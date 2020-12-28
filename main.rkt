@@ -17,6 +17,29 @@
         [p21 (hc-append p2 p1)])
     (vc-append p12 p21)))
 
-(checker (colorize (square 10) "red")
-         (colorize (square 10) "black"))
+(define (checkerboard p)
+  (let* ([rp (colorize p "red")]
+         [bp (colorize p "black")]
+         [c (checker rp bp)]
+         [c4 (four c)])
+    (four c4)))
+
+(define (series mk)
+  (hc-append 10 (mk 5) (mk 10) (mk 20)))
+
+; Doesn't work to pass in data argument:
+;(let ([q (checkerboard (square 10))])
+;  (series q))
+
+; Works:
+;(series (lambda (size) (checkerboard (square size))))
+
+(define (rgb-series mk)
+  (vc-append
+   (series (lambda (sz) (colorize (mk sz) "red")))
+   (series (lambda (sz) (colorize (mk sz) "green")))
+   (series (lambda (sz) (colorize (mk sz) "blue")))))
+
+(define (spoopy-rectangle n) (rectangle n (* n 2)))
+
 
