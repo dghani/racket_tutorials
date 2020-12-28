@@ -1,0 +1,22 @@
+#lang slideshow
+
+(define c (circle 10))
+(define r (rectangle 10 20))
+
+(define (square n)
+  ; Comment 1
+  ; Comment 2
+  (filled-rectangle n n))
+
+(define (four p)
+  (define two-p (hc-append p p))
+  (vc-append two-p two-p))
+
+(define (checker p1 p2)
+  (let ([p12 (hc-append p1 p2)]
+        [p21 (hc-append p2 p1)])
+    (vc-append p12 p21)))
+
+(checker (colorize (square 10) "red")
+         (colorize (square 10) "black"))
+
