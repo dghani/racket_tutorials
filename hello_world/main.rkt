@@ -1,4 +1,5 @@
 #lang slideshow
+(require pict/flash)
 
 (define c (circle 10))
 (define r (rectangle 10 20))
@@ -41,5 +42,10 @@
    (series (lambda (sz) (colorize (mk sz) "blue")))))
 
 (define (spoopy-rectangle n) (rectangle n (* n 2)))
+
+(define (rainbow p)
+  (map (lambda (color)
+         (colorize p color))
+       (list "red" "blue" "green" "orange" "yellow" "purple" "white")))
 
 
